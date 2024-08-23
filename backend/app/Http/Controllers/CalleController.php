@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Calle;
+use Illuminate\Http\Request;
+
+class CalleController extends Controller
+{
+    public function index()
+    {
+        return Calle::with('ciudad')->get();
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:200',
+            'ciudad_id' => 'required|exists:ciudades,id',
+        ]);
+
+        $calle = Calle::create($request->all());
+
+        return response()->json($calle, 201);
+    }
+
+    public function show($id)
+    {
+        return Calle::with('ciudad')->findOrFail($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $calle = Calle::findOrFail($id);
+        $request->validate([
+            'nombre' => 'required|string|max:200',
+            'ciudad_id' => 'required|exists:ciudades,id',
+        ]);
+
+        $calle->update($request->all());
+
+        return response()->json($calle, 200);
+    }
+
+    public function destroy($id)
+    {
+        Calle::destroy($id);
+
+        return response()->json(null, 204);
+    }
+}
