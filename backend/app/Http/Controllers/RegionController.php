@@ -7,13 +7,11 @@ use App\Models\Region;
 
 class RegionController extends Controller
 {
-    // obtener todas las regiones
     public function index()
     {
         return Region::all();
     }
-    
-        //crear una region
+
     public function store(Request $request)
     {
         $request->validate([
@@ -27,13 +25,11 @@ class RegionController extends Controller
         ], 201);
     }
 
-    // obtener regio por id
     public function show($id)
     {
         return Region::findOrFail($id);
     }
 
-    // updatear region
     public function update(Request $request, $id)
     {
         $region = Region::findOrFail($id);
@@ -47,16 +43,15 @@ class RegionController extends Controller
         ], 200);
     }
 
-    // eliminar region
     public function destroy($id)
-{
-    $region = Region::findOrFail($id); // verifica id antes de eliminar
+    {
+        $region = Region::findOrFail($id);
 
-    $region->delete(); 
+        $region->delete();
 
-    return response()->json([
-        'message' => 'Región eliminada con éxito',
-        'data' => $region 
-    ], 200); 
-}
+        return response()->json([
+            'message' => 'Region eliminada con exito',
+            'data' => $region
+        ], 200);
+    }
 }

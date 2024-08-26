@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provincia extends Model
 {
-    protected $fillable = ['nombre', 'region_id'];  
+    protected $fillable = ['nombre', 'region_id'];
     public function region()
     {
-        return $this->belongsTo(Region::class);
-    } 
-    public function ciudades()
-    {
-        return $this->hasMany(Ciudad::class);
+        return $this->belongsTo(Region::class, 'region_id');
     }
 }

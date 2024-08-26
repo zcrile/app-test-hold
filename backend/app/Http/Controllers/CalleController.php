@@ -9,19 +9,22 @@ class CalleController extends Controller
 {
     public function index()
     {
-        return Calle::with('ciudad')->get();
+        return Calle::with('ciudad.provincia.region')->get();
     }
-
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:200',
             'ciudad_id' => 'required|exists:ciudades,id',
         ]);
-
-        $calle = Calle::create($request->all());
-
-        return response()->json($calle, 201);
+        try {
+            $calle = Calle::create($request->all());
+            \Log::info('Calle creada:', $calle->toArray()); 
+            return response()->json($calle, 201);
+        } catch (\Exception $e) {
+            \Log::error('Error al crear la calle:', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'Error al crear la calle'], 500);
+        }
     }
 
     public function show($id)

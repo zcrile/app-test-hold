@@ -21,12 +21,15 @@ Route::post('/provincias', [ProvinciaController::class, 'store']);
 Route::get('/provincias/{id}', [ProvinciaController::class, 'show']);
 Route::put('/provincias/{id}', [ProvinciaController::class, 'update']);
 Route::delete('/provincias/{id}', [ProvinciaController::class, 'destroy']);
+Route::get('/regiones/{regionId}/provincias', [ProvinciaController::class, 'getByRegion']);
 
 Route::get('/ciudades', [CiudadController::class, 'index']);
 Route::post('/ciudades', [CiudadController::class, 'store']);
 Route::get('/ciudades/{id}', [CiudadController::class, 'show']);
 Route::put('/ciudades/{id}', [CiudadController::class, 'update']);
 Route::delete('/ciudades/{id}', [CiudadController::class, 'destroy']);
+Route::get('/provincias/{provinciaId}/ciudades', [CiudadController::class, 'getByProvincia']);
+
 
 Route::get('/calles', [CalleController::class, 'index']);
 Route::post('/calles', [CalleController::class, 'store']);

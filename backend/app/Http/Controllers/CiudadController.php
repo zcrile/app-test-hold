@@ -48,4 +48,10 @@ class CiudadController extends Controller
 
         return response()->json(null, 204);
     }
+    public function getByProvincia($provinciaId)
+    {
+        return Ciudad::where('provincia_id', $provinciaId)->with('provincia')->get();
+    }
 }
+
+

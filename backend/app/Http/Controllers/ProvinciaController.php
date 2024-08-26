@@ -48,4 +48,9 @@ class ProvinciaController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function getByRegion($regionId)
+    {
+        return Provincia::where('region_id', $regionId)->with('region')->get();
+    }
 }
