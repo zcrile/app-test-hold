@@ -2,6 +2,15 @@
 
 Aplicacion desarrollada con Laravel para el backend y React para el frontend.
 
+## Requisitos
+
+- PHP 8.x
+- Composer
+- Laravel 9.x
+- MySQL
+- Node.js 18.x
+- React 18.x
+
 ## Instalacion
 
 ## 1. Clonar repositorio 
@@ -56,3 +65,4 @@ DB_PASSWORD=
 ## 9.  Acedder a la aplicacion mediante la url por defecto.
 
 	http://localhost:5173
+
